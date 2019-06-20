@@ -5,12 +5,16 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
+  Button
 } from "react-native";
 import { Constants, SQLite } from "expo";
 import Items from "./Items/items";
 import { styles } from "./Styles/styles";
 import { db } from "./db/db";
+import { controller } from "./db/controller";
+// import { CreateAppNavigator } from "./Navigation/AppNavigator";
 
 export default class App extends React.Component {
   state = {
@@ -71,6 +75,7 @@ export default class App extends React.Component {
             }
           />
         </ScrollView>
+        <Button title="Solid Button" onPress={this.handlePress} />
       </View>
     );
   }
@@ -91,6 +96,12 @@ export default class App extends React.Component {
       null,
       this.update
     );
+  }
+
+  handlePress() {
+    console.log("press");
+    Alert.alert("press");
+    controller.getData();
   }
 
   update = () => {
